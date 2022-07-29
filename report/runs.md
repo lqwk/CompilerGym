@@ -88,3 +88,50 @@ python -m llvm_autotuning.tune -m \
 experiment timestamp           config
 my-exp     2022-07-26/11-46-36 C0                  18           90    690.013663        0.869043
 ```
+
+
+# Run 3: 32 CPUs, 10 replicas, nevergrad autotuner
+
+**Command (Runtime)**:
+
+```
+python -m llvm_autotuning.tune -m \
+    experiment=my-exp \
+    outputs=/tmp/logs \
+    executor.cpus=32 \
+    num_replicas=10 \
+    autotuner=nevergrad \
+    autotuner.optimization_target=runtime \
+    autotuner.search_time_seconds=600
+```
+
+**Results**:
+
+```
+                                       num_benchmarks  num_results  walltime (s)  geomean_reward
+experiment timestamp           config
+my-exp     2022-07-28/12-26-30 C0                  18          178    658.266678        1.035727
+```
+
+
+**Command (Runtime Series)**:
+
+```
+python -m llvm_autotuning.tune -m \
+    experiment=my-exp \
+    outputs=/tmp/logs \
+    executor.cpus=32 \
+    num_replicas=10 \
+    autotuner=nevergrad \
+    autotuner.optimization_target=runtimeseries \
+    autotuner.search_time_seconds=600
+```
+
+**Results**:
+
+```
+Aggregate over experiments:
+                                       num_benchmarks  num_results  walltime (s)  geomean_reward
+experiment timestamp           config
+my-exp     2022-07-28/13-39-07 C0                  18          177    694.333734        0.859231
+```
