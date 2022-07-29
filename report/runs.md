@@ -1,3 +1,15 @@
+# Overall
+
+| Optimization Target | CPUs | Replicas | Autotuner | Result Count | Reward |
+|---------------------|------|----------|-----------|--------------|--------|
+| Runtime             | 32   | 1        | nevergrad | 18           | 0.9709 |
+| Runtime             | 32   | 5        | nevergrad | 89           | 1.0245 |
+| Runtime             | 32   | 10       | nevergrad | 178          | 1.0357 |
+| Runtime Series      | 32   | 1        | nevergrad | 18           | 0.8867 |
+| Runtime Series      | 32   | 5        | nevergrad | 90           | 0.8690 |
+| Runtime Series      | 32   | 10       | nevergrad | 177          | 0.8592 |
+
+
 # Run 1: 32 CPUs, 1 replica, nevergrad autotuner
 
 **Command (Runtime)**:
