@@ -52,7 +52,7 @@ class OptimizationTarget(str, Enum):
         elif self.value == OptimizationTarget.BINSIZE:
             env.reward_space = "ObjectTextSizeOz"
         elif self.value == OptimizationTarget.RUNTIME:
-            env = RuntimePointEstimateReward(env, warmup_count=0, runtime_count=3)
+            env = RuntimePointEstimateReward(env, warmup_count=5, runtime_count=30)
         elif self.value == OptimizationTarget.RUNTIME_SERIES:
             env = RuntimeSeriesEstimateReward(env, warmup_count=5, runtime_count=30)
         else:

@@ -36,6 +36,10 @@ class RuntimeSeriesReward(Reward):
         self.current_benchmark: Optional[str] = None
 
     def reset(self, benchmark, observation_view) -> None:
+        print(f"reset: Previous Runtimes: {self.previous_runtimes}")
+        print(f"reset: Starting Runtimes: {self.starting_runtimes}")
+        print(f"reset: Runtimes: {observation_view['Runtime']}")
+        print(f"reset: Runtime count: {self.runtime_count}")
         # If we are changing the benchmark then check that it is runnable.
         if benchmark != self.current_benchmark:
             if not observation_view["IsRunnable"]:
@@ -69,6 +73,14 @@ class RuntimeSeriesReward(Reward):
         # difference between the two medians. Otherwise, set the reward as 0.
         # https://en.wikipedia.org/wiki/Kruskal%E2%80%93Wallis_one-way_analysis_of_variance
         _, pval = scipy.stats.kruskal(runtimes, self.previous_runtimes)
-        reward = np.median(self.previous_runtimes) - np.median(runtimes) if pval < 0.05 else 0
+        print(f"update: Runtimes: {runtimes}")
+        print(f"update: Prev Runtimes: {self.previous_runtimes}")
+        if pval < 0.05:
+            reward = np.median(self.previous_runtimes) - np.median(runtimes)
+            print(f"Significant!  p={pval}, reward={reward}")
+        else:
+            reward = 0
+            print(f"Not Significant!  p={pval}, reward={reward}")
+        # reward = np.median(self.previous_runtimes) - np.median(runtimes) if pval < 0.05 else 0
         self.previous_runtimes = runtimes
         return reward

@@ -88,6 +88,9 @@ class RuntimeSeriesEstimateReward(CompilerEnvWrapper):
         """
         super().__init__(env)
 
+        self.env.unwrapped.runtime_observation_count = runtime_count
+        self.env.unwrapped.runtime_warmup_runs_count = warmup_count
+
         self.env.unwrapped.reward.add_space(
             RuntimeSeriesReward(
                 runtime_count=runtime_count,
@@ -95,9 +98,6 @@ class RuntimeSeriesEstimateReward(CompilerEnvWrapper):
             )
         )
         self.env.unwrapped.reward_space = "runtime"
-
-        self.env.unwrapped.runtime_observation_count = runtime_count
-        self.env.unwrapped.runtime_warmup_runs_count = warmup_count
 
     def fork(self) -> "RuntimeSeriesEstimateReward":
         fkd = self.env.fork()

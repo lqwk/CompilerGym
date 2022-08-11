@@ -36,6 +36,9 @@ class RuntimeReward(Reward):
         self.estimator = estimator
 
     def reset(self, benchmark, observation_view) -> None:
+        print(f"Previous Runtimes: {self.previous_runtime}")
+        print(f"Starting Runtimes: {self.starting_runtime}")
+        print(f"Runtimes: {observation_view['Runtime']}")
         # If we are changing the benchmark then check that it is runnable.
         if benchmark != self.current_benchmark:
             if not observation_view["IsRunnable"]:
@@ -59,6 +62,8 @@ class RuntimeReward(Reward):
         del actions  # unused
         del observation_view  # unused
         runtimes = observations[0]
+        print(f"Runtimes: {runtimes}")
+        print(f"update Previous Runtimes: {self.previous_runtime}")
         if len(runtimes) != self.runtime_count:
             raise ServiceError(
                 f"Expected {self.runtime_count} runtimes but received {len(runtimes)}"
