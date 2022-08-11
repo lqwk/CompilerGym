@@ -97,16 +97,16 @@ class RuntimeSeriesEstimateReward(CompilerEnvWrapper):
                 warmup_count=warmup_count,
             )
         )
-        self.env.unwrapped.reward_space = "runtime"
+        self.env.unwrapped.reward_space = "runtimeseries"
 
     def fork(self) -> "RuntimeSeriesEstimateReward":
         fkd = self.env.fork()
-        # Remove the original "runtime" space so that we that new
+        # Remove the original "runtimeseries" space so that we that new
         # RuntimeSeriesEstimateReward wrapper instance does not attempt to
         # redefine, raising a warning.
-        del fkd.unwrapped.reward.spaces["runtime"]
+        del fkd.unwrapped.reward.spaces["runtimeseries"]
         return RuntimeSeriesEstimateReward(
             env=fkd,
-            runtime_count=self.reward.spaces["runtime"].runtime_count,
-            warmup_count=self.reward.spaces["runtime"].warmup_count,
+            runtime_count=self.reward.spaces["runtimeseries"].runtime_count,
+            warmup_count=self.reward.spaces["runtimeseries"].warmup_count,
         )
