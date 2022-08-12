@@ -45,6 +45,9 @@ from compiler_gym.util.commands import Popen
 from compiler_gym.util.runfiles_path import transient_cache_path
 from compiler_gym.util.shell_format import join_cmd
 
+import traceback
+import sys
+
 _INST2VEC_ENCODER = Inst2vecEncoder()
 
 
@@ -356,6 +359,8 @@ class LlvmEnv(ClientServiceCompilerEnv):
 
         # Resend the runtimes-per-observation session parameter, if it is a
         # non-default value.
+        print(f"llvm_env reset: old runtime count: {self.runtime_observation_count}")
+        print(f"llvm_env reset: new runtime count: {self._runtimes_per_observation_count}")
         if self._runtimes_per_observation_count is not None:
             self.runtime_observation_count = self._runtimes_per_observation_count
         if self._runtimes_warmup_per_observation_count is not None:
@@ -587,7 +592,10 @@ class LlvmEnv(ClientServiceCompilerEnv):
 
     @runtime_observation_count.setter
     def runtime_observation_count(self, n: int) -> None:
+        traceback.print_stack(file=sys.stdout)
+        print(f"llvm_env: set {n}")
         if self.in_episode:
+            print(f"llvm_env: in_episode: send {n}")
             self.send_param("llvm.set_runtimes_per_observation_count", str(n))
         # NOTE(cummins): Keep this after the send_param() call because
         # send_param() will raise an error if the valid is invalid.

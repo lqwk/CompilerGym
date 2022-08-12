@@ -11,6 +11,8 @@ from compiler_gym.util.gym_type_hints import ActionType, ObservationType
 
 import scipy
 import numpy as np
+import traceback
+import sys
 
 class RuntimeSeriesReward(Reward):
     def __init__(
@@ -36,6 +38,7 @@ class RuntimeSeriesReward(Reward):
         self.current_benchmark: Optional[str] = None
 
     def reset(self, benchmark, observation_view) -> None:
+        traceback.print_stack(file=sys.stdout)
         print(f"reset: Previous Runtimes: {self.previous_runtimes}")
         print(f"reset: Starting Runtimes: {self.starting_runtimes}")
         print(f"reset: Runtimes: {observation_view['Runtime']}")

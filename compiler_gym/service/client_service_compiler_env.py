@@ -788,6 +788,7 @@ class ClientServiceCompilerEnv(CompilerEnv):
                 reply.new_action_space
             )
 
+        print(f"csc_env: observation: {self.observation}")
         self.reward.reset(benchmark=self.benchmark, observation_view=self.observation)
         if self.reward_space:
             self.episode_reward = 0.0
@@ -845,10 +846,12 @@ class ClientServiceCompilerEnv(CompilerEnv):
         observations_to_compute: List[ObservationSpaceSpec] = list(
             set(observation_spaces).union(set(reward_observation_spaces))
         )
+        print(f"csc_env: observations_to_compute: {observations_to_compute}")
         observation_space_index_map: Dict[ObservationSpaceSpec, int] = {
             observation_space: i
             for i, observation_space in enumerate(observations_to_compute)
         }
+        print(f"csc_env: observation_space_index_map: {observation_space_index_map}")
 
         # Record the actions.
         self._actions += actions
@@ -919,11 +922,15 @@ class ClientServiceCompilerEnv(CompilerEnv):
             )
         ]
 
+        print(f"csc_env: computed_observations: {computed_observations}")
+
         # Get the user-requested observation.
         observations: List[ObservationType] = [
             computed_observations[observation_space_index_map[observation_space]]
             for observation_space in observation_spaces
         ]
+
+        print(f"csc_env: observations: {observations}")
 
         # Update and compute the rewards.
         rewards: List[RewardType] = []
@@ -941,6 +948,8 @@ class ClientServiceCompilerEnv(CompilerEnv):
                     reward_space.update(actions, reward_observations, self.observation)
                 )
             )
+
+        print(f"csc_env: rewards: {rewards}")
 
         info = {
             "action_had_no_effect": reply.action_had_no_effect,

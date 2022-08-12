@@ -68,6 +68,8 @@ class ObservationView:
             actions=[], observation_spaces=[observation_space], reward_spaces=[]
         )
 
+        print(f"observation: observation: {self.observation}")
+
         if done:
             # Computing an observation should never cause a terminal state since
             # no action has been applied.
