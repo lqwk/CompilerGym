@@ -359,6 +359,7 @@ class LlvmEnv(ClientServiceCompilerEnv):
 
         # Resend the runtimes-per-observation session parameter, if it is a
         # non-default value.
+        traceback.print_stack(file=sys.stdout)
         print(f"llvm_env reset: old runtime count: {self.runtime_observation_count}")
         print(f"llvm_env reset: new runtime count: {self._runtimes_per_observation_count}")
         if self._runtimes_per_observation_count is not None:
