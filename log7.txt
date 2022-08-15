@@ -1,0 +1,237 @@
+[2022-08-15 10:09:31,495][HYDRA] Launching 1 jobs locally
+[2022-08-15 10:09:31,495][HYDRA] 	#0 : experiment=my-exp outputs=/tmp/logs executor.cpus=32 num_replicas=1 autotuner=nevergrad autotuner.optimization_target=runtimeseries autotuner.search_time_seconds=120 benchmarks=single_benchmark_for_testing
+Experiment configuration:
+
+    autotuner:
+      algorithm: nevergrad
+      algorithm_config:
+        episode_length: 325
+        optimizer: DiscreteLenglerOnePlusOne
+      optimization_target: runtimeseries
+      search_time_seconds: 120
+    benchmarks:
+      benchmarks:
+      - benchmarks_start_at: 0
+        dataset: null
+        max_benchmarks: 0
+        uris:
+        - benchmark://cbench-v1/crc32
+    executor:
+      block: true
+      cpus: 32
+      gpus: 0
+      slurm_partition: null
+      timeout_hours: 12
+      type: local
+    experiment: my-exp
+    num_replicas: 1
+    seed: 204
+    working_directory: /private/tmp/logs/my-exp/2022-08-15/10-09-31/my-exp-C0
+
+
+0915 10:08:31 llvm_autotuning.experiment] Wrote /private/tmp/logs/my-exp/2022-08-15/10-09-31/my-exp-C0/config.json
+0915 10:08:33 compiler_gym.util.executor] Submitting job 1 to local ...
+0915 10:08:33 compiler_gym.util.executor] Waiting for 1 local jobs to complete with job ID: 1
+
+  File "<string>", line 1, in <module>
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/experiment.py", line 189, in _experiment_worker
+    with autotuner.optimization_target.make_env(benchmark) as env:
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/optimization_target.py", line 57, in make_env
+    env = RuntimeSeriesEstimateReward(env, warmup_count=5, runtime_count=30)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/wrappers/llvm.py", line 91, in __init__
+    self.env.unwrapped.runtime_observation_count = runtime_count
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/envs/llvm/llvm_env.py", line 596, in runtime_observation_count
+    traceback.print_stack(file=sys.stdout)
+
+llvm_env: set 30
+experiment: 30
+
+  File "<string>", line 1, in <module>
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/experiment.py", line 193, in _experiment_worker
+    state = autotuner(env, seed=seed)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/autotuners/__init__.py", line 102, in __call__
+    reward=self.optimization_target.final_reward(env),
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/optimization_target.py", line 74, in final_reward
+    env.reset()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/just_keep_going_env.py", line 61, in reset
+    return super().reset(*args, **kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/wrappers/core.py", line 49, in reset
+    return self.env.reset(*args, **kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/wrappers/core.py", line 49, in reset
+    return self.env.reset(*args, **kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/envs/llvm/llvm_env.py", line 344, in reset
+    observation = super().reset(*args, **kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/service/client_service_compiler_env.py", line 623, in reset
+    return self._reset(
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/service/client_service_compiler_env.py", line 791, in _reset
+    self.reward.reset(benchmark=self.benchmark, observation_view=self.observation)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/views/reward.py", line 71, in reset
+    space.reset(benchmark=benchmark, observation_view=observation_view)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/spaces/runtime_series_reward.py", line 41, in reset
+    traceback.print_stack(file=sys.stdout)
+
+reset: Previous Runtimes: [0.010297 0.010259 0.010081 0.009832 0.009764 0.009897 0.009784 0.009665
+ 0.010013 0.010618 0.010389 0.010048 0.009975 0.009895 0.009889 0.010095
+ 0.010065 0.01034  0.010804 0.011094 0.01052  0.01043  0.010732 0.010318
+ 0.0098   0.010234 0.009737 0.009781 0.009743 0.009859]
+
+reset: Starting Runtimes: [0.021163]
+reset: Runtimes: [0.047642]
+reset: Runtime count: 30
+
+  File "<string>", line 1, in <module>
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/experiment.py", line 193, in _experiment_worker
+    state = autotuner(env, seed=seed)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/autotuners/__init__.py", line 102, in __call__
+    reward=self.optimization_target.final_reward(env),
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/optimization_target.py", line 74, in final_reward
+    env.reset()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/just_keep_going_env.py", line 61, in reset
+    return super().reset(*args, **kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/wrappers/core.py", line 49, in reset
+    return self.env.reset(*args, **kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/wrappers/core.py", line 49, in reset
+    return self.env.reset(*args, **kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/envs/llvm/llvm_env.py", line 362, in reset
+    traceback.print_stack(file=sys.stdout)
+
+llvm_env reset: old runtime count: 30
+llvm_env reset: new runtime count: 30
+
+  File "<string>", line 1, in <module>
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/experiment.py", line 193, in _experiment_worker
+    state = autotuner(env, seed=seed)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/autotuners/__init__.py", line 102, in __call__
+    reward=self.optimization_target.final_reward(env),
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/optimization_target.py", line 74, in final_reward
+    env.reset()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/just_keep_going_env.py", line 61, in reset
+    return super().reset(*args, **kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/wrappers/core.py", line 49, in reset
+    return self.env.reset(*args, **kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/wrappers/core.py", line 49, in reset
+    return self.env.reset(*args, **kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/envs/llvm/llvm_env.py", line 366, in reset
+    self.runtime_observation_count = self._runtimes_per_observation_count
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/envs/llvm/llvm_env.py", line 596, in runtime_observation_count
+    traceback.print_stack(file=sys.stdout)
+
+llvm_env: set 30
+llvm_env: in_episode: send 30
+
+update: Runtimes: [0.010031 0.010041 0.012045 0.011461 0.010559 0.010194 0.01069  0.010358
+ 0.010399 0.01081  0.010606 0.010468 0.009917 0.010385 0.010674 0.010205
+ 0.009777 0.009852 0.010327 0.009811 0.009796 0.010028 0.009723 0.00979
+ 0.010147 0.009669 0.009922 0.010011 0.010277 0.009706]
+
+update: Prev Runtimes: [0.021163]
+Not Significant!  p=0.09353251268909288, reward=0
+
+  File "<string>", line 1, in <module>
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/experiment.py", line 193, in _experiment_worker
+    state = autotuner(env, seed=seed)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/autotuners/__init__.py", line 102, in __call__
+    reward=self.optimization_target.final_reward(env),
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/optimization_target.py", line 122, in final_reward
+    new_env.reset()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/envs/llvm/llvm_env.py", line 362, in reset
+    traceback.print_stack(file=sys.stdout)
+
+llvm_env reset: old runtime count: 1
+llvm_env reset: new runtime count: None
+
+  File "<string>", line 1, in <module>
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/experiment.py", line 193, in _experiment_worker
+    state = autotuner(env, seed=seed)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/autotuners/__init__.py", line 102, in __call__
+    reward=self.optimization_target.final_reward(env),
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/optimization_target.py", line 123, in final_reward
+    new_env.runtime_observation_count = runtime_count
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/envs/llvm/llvm_env.py", line 596, in runtime_observation_count
+    traceback.print_stack(file=sys.stdout)
+
+llvm_env: set 30
+llvm_env: in_episode: send 30
+
+  File "<string>", line 1, in <module>
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/experiment.py", line 193, in _experiment_worker
+    state = autotuner(env, seed=seed)
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/autotuners/__init__.py", line 102, in __call__
+    reward=self.optimization_target.final_reward(env),
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym_examples-0.2.4-py3.8.egg/llvm_autotuning/optimization_target.py", line 129, in final_reward
+    new_env.reset()
+  File "/Users/qingweilan/miniconda3/envs/compiler_gym/lib/python3.8/site-packages/compiler_gym-0.2.4-py3.8.egg/compiler_gym/envs/llvm/llvm_env.py", line 362, in reset
+    traceback.print_stack(file=sys.stdout)
+
+llvm_env reset: old runtime count: 30
+llvm_env reset: new runtime count: 30
