@@ -187,6 +187,7 @@ def _experiment_worker(
 ) -> None:
     try:
         with autotuner.optimization_target.make_env(benchmark) as env:
+            print(f"experiment: {env.runtime_observation_count}")
             env.seed(seed)
             env.action_space.seed(seed)
             state = autotuner(env, seed=seed)
